@@ -44,8 +44,11 @@ public class HillCipher {
             String line;
             while ((line = reader.readLine()) != null) {
                 for (char c : line.toCharArray()) {
-                    if (Character.isLetter(c)) {
+                	if ((c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z'))  {
+                    	
+                    	
                         charList.add(Character.toLowerCase(c));
+                        
                     }
                 }
             }
@@ -112,17 +115,28 @@ public class HillCipher {
         System.out.println("Key matrix:");
         for (int[] row : keyMatrix) {
             for (int element : row) {
-                System.out.print(element + " ");
+                System.out.printf("%4d", element);
             }
             System.out.println();
         }
         
-        // Print the plaintext (including any padding)
         System.out.println("Plaintext:");
-        System.out.println(new String(plainText));
+        for (int i = 0; i < plainText.length; i++) {
+            System.out.print(plainText[i]);
+            if ((i + 1) % 81 == 0) {
+                System.out.println();  // Print a new line after every 81 characters
+            }
+        }
+        System.out.println(); 
 
         // Print the ciphertext
         System.out.println("Ciphertext:");
-        System.out.println(new String(cipherText));
+        for (int i = 0; i < cipherText.length; i++) {
+            System.out.print(cipherText[i]);
+            if ((i + 1) % 81 == 0) {
+                System.out.println();  // Print a new line after every 81 characters
+            }
+        }
+        System.out.println(); 
     }
 }
